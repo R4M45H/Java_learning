@@ -1,7 +1,7 @@
 package com.simicon;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -64,7 +64,7 @@ public class Main {
 
         // Ћогические операторы
         // &&, ||, !, ^
-        if(coinCurrency.equals("RUB")) {
+        if (coinCurrency.equals("RUB")) {
             System.out.println("Ёто рубль!");
         } else if (coinCurrency.equals("USD")) {
             System.out.println("Ёто долар!");
@@ -73,8 +73,7 @@ public class Main {
         }
 
 
-
-
+        // дл€ примера: используетс€ в проверке получени€ кода ответа от запроса 200, 401, 400, 500, 404
         switch (coinCurrency) {
             case "RUB": {
                 System.out.println("Ёто рубль!");
@@ -88,5 +87,165 @@ public class Main {
                 System.out.println("Ќичего не подошло");
             }
         }
+
+
+        // »нициализаци€ массива.
+        // Ќельз€ имзен€ть длину массива после его инициализации.
+        // —пособы создани€ массива:
+        int[] array = new int[3]; // int[] array = int[] {100, 150, -1}; [3] - длина массива
+        int[] array1 = new int[]{100, 150, -1, 90}; // длина массива 4
+        // обращение по индексу  0(100), 1(150), 2(-1), 3(90)
+        int[] array2 = {0, 1, 2, 3};
+        //array2[2] = 3213124; // изменение элемента массива с индексом 2
+        System.out.println(array2[1]);
+        System.out.println(array2.length); // lenght отображает длину массива
+
+        // —оздание массива дл€ строк
+        String[] arrayStr = new String[]{"Dima", "Vasya"};
+
+        int[] array3 = {100, 150, -1, 90};
+        int[] array4 = {1, 34, -44, 55};
+
+        // двумерный массив
+        int[][] array5 = {array3, array4};
+        System.out.println(Arrays.deepToString(array5));
+
+
+        // циклы
+
+        //for
+        for (int i = 0; i < array2.length; i++) { // если будет <= то будет выход за пределы массива, и произойдет ошибка, т.к. макс индекс 3
+            System.out.println(array2[i]);     // тело цикла
+        }
+
+
+        for (int i = array2.length - 1; i >= 0; i--) { // перебор массива с конца
+            System.out.println(array2[i]);
+        }
+
+
+        // while - не прив€зан к индексу
+        int index = 0;
+        while (index < array2.length) { // пока true цикл будет работать
+            System.out.println(array2[index]);
+            index++;
+        }
+
+//        boolean done = false;
+//        while (!false) {
+//            System.out.println(done);
+//            // что-то ищем
+//            if (done == false) {
+//                done = true;
+//                System.out.println(done);
+//            }
+//
+//        }
+        boolean done = false;
+        while (!done) {
+            System.out.println(done);
+            // что-то ищем
+            if (!done) { // или можно использовать if (done == false)
+                done = true;
+                System.out.println(done);
+            }
+        }
+
+        // сначала выполн€етс€ условие, потом начинаетс€ цикл
+//        do {
+//
+//        } while (!false);
+
+        // forEach
+        for (int var : array2) { // array2 объект перебора
+            System.out.println(var);
+        }
+        // ключевые слова цикла
+
+        int[] array6 = new int[]{100, 150, -1, 90};
+        for (int i = 0; i < array2.length; i++) {
+            if (array6[i] == -1) {
+                System.out.println("Ќашли:" + array6[i]);
+                break;
+            }
+        }
+
+        for (int i = 0; i < array2.length; i++) {
+            if (array6[i] != -1) {
+                continue;
+            }
+            // —ложное вычисление
+            System.out.println("Ќашли:" + array6[i]);
+            break;
+        }
+
+//        public static void someMethod() {
+//            for (int i = 0; i < array2.length; i++) {
+//                if (array6[i] != -1) {
+//                    return;
+//                }
+//        }
+
+        //коллекции
+        // List<Objects> - раньше было в java
+        List<String> stringList = new ArrayList<>(); //<> - дженерик тип объекта который завернут внутри листа,
+        // List - интерфейс, ArrayList - список использующий внутри себ€ массивы
+        stringList.add("Dima"); //boxing
+        stringList.addAll(Arrays.asList("Petr", "Ivan"));
+        stringList.get(0);
+//        stringList.sort(Comparator.comparing());
+        stringList.remove("Petr");
+        stringList.indexOf("Petr");
+        stringList.stream()
+                        .filter(s -> s.equals("Petr"))
+                        .map(s -> s.toUpperCase());
+
+        for (String var : stringList) { //unboxing
+            System.out.println(var);
+        }
+
+        for (int i = stringList.size() -1; i >= 0; i--) { //unboxing
+            System.out.println(stringList.get(i));
+        }
+
+        Set<Integer> stringSet2 = new HashSet<>(); // хранит только уникальные значени€, проверка отсутствие повторных значений.
+        stringSet2.add(1);
+//        stringSet2.add(1); // не добавитс€ т.к. только уникальные значени€ принимает.
+
+        Map<String, Integer> aMap1 = new HashMap<>(); // ¬ажно знать про HashMap
+
+        Map<Integer, Human> aMap = new HashMap<>(); // ¬ажно знать про HashMap
+        aMap.put(343231, new Human("Petya", 33, "Male"));
+        aMap.put(412412, new Human("Vladimir",23, "Male"));
+        aMap.put(515214, new Human("Vladislav", 43, "Male"));
+
+        aMap.keySet();
+        aMap.values();
+
+        Set<Integer> passportNumbers = aMap.keySet();
+        Collection<Human> humans = aMap.values();
+
+        Set<Map.Entry<Integer, Human>> entrySet = aMap.entrySet();
+        for (Map.Entry<Integer, Human> entry : entrySet) {
+            if (entry.getKey() == 343231) {
+                System.out.println("Ќашли ѕетра: " + entry.getValue().getName());
+            }
+        }
+
+
+//        aMap.containsKey();
+//        aMap.get();
+
+        someMethod(new String[]{"Dima", "Vasya"});
+        someMethod1("Dima", "Vasya"); // так можно передавать параметры дл€ переменной длины
+
+        }
+    public static String someMethod(String[] args) {
+        return "" ;
     }
+
+    public static String someMethod1(String... args) {
+        return "" ;
+    }
+
 }
